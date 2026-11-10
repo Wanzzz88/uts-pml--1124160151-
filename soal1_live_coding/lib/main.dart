@@ -57,60 +57,185 @@ class ProfilePage extends StatelessWidget {
           ),
         ],
       ),
+
       body: SafeArea(
-        child: LayoutBuilder(
-          builder: (context, constraints) {
-            return SingleChildScrollView(
-              child: SizedBox(
-                width: double.infinity,
-                height: constraints.maxHeight,
-                child: Center(
-                  child: Padding(
-                    padding: const EdgeInsets.all(25),
-                    child: Column(
-                      mainAxisSize: MainAxisSize.min,
-                      crossAxisAlignment: CrossAxisAlignment.center,
-                      children: [
-                        const CircleAvatar(
-                          radius: 50,
-                          child: Icon(
-                            Icons.person,
-                            size: 50,
-                          ),
-                        ),
-                        const SizedBox(height: 20),
-                        Text(
-                          'Muhammad Ridwan',
-                          textAlign: TextAlign.center,
-                          style: Theme.of(context)
-                              .textTheme
-                              .headlineSmall,
-                        ),
-                        const SizedBox(height: 10),
-                        Text(
-                          '1124160151',
-                          textAlign: TextAlign.center,
-                          style: Theme.of(context)
-                              .textTheme
-                              .bodyMedium,
-                        ),
-                        const SizedBox(height: 10),
-                        Text(
-                          'Program Studi: Informatika',
-                          textAlign: TextAlign.center,
-                          style: Theme.of(context)
-                              .textTheme
-                              .bodyMedium,
-                        ),
-                      ],
+        child: SingleChildScrollView(
+          child: Padding(
+            padding: const EdgeInsets.all(20),
+            child: Center(
+              child: ConstrainedBox(
+                constraints: const BoxConstraints(
+                  maxWidth: 600,
+                ),
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.stretch,
+                  children: [
+                    // KEPALA PROFIL
+                    const SizedBox(height: 10),
+                    const CircleAvatar(
+                      radius: 50,
+                      child: Icon(
+                        Icons.person,
+                        size: 50,
+                      ),
                     ),
-                  ),
+                    const SizedBox(height: 20),
+                    Text(
+                      'Muhammad Ridwan',
+                      textAlign: TextAlign.center,
+                      style: Theme.of(context)
+                          .textTheme
+                          .headlineSmall,
+                    ),
+                    const SizedBox(height: 10),
+                    Text(
+                      '1124160151',
+                      textAlign: TextAlign.center,
+                      style: Theme.of(context)
+                          .textTheme
+                          .bodyMedium,
+                    ),
+                    const SizedBox(height: 10),
+                    Text(
+                      'Program Studi: Informatika',
+                      textAlign: TextAlign.center,
+                      style: Theme.of(context)
+                          .textTheme
+                          .bodyMedium,
+                    ),
+
+                    const SizedBox(height: 30),
+
+                    // KARTU INFORMASI KONTAK
+                    Card(
+                      child: Padding(
+                        padding: const EdgeInsets.symmetric(
+                          vertical: 12,
+                          horizontal: 8,
+                        ),
+                        child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            Padding(
+                              padding: const EdgeInsets.all(12),
+                              child: Text(
+                                'Informasi Kontak',
+                                style: Theme.of(context)
+                                    .textTheme
+                                    .titleLarge,
+                              ),
+                            ),
+                            const InfoTile(
+                              icon: Icons.email,
+                              label: 'Email',
+                              value: 'wanzzz@gmail.com',
+                            ),
+                            const InfoTile(
+                              icon: Icons.phone,
+                              label: 'Nomor HP',
+                              value: '088291392183',
+                            ),
+                            const InfoTile(
+                              icon: Icons.school,
+                              label: 'Kelas',
+                              value: 'TI24 SE1',
+                            ),
+                            const InfoTile(
+                              icon: Icons.code,
+                              label: 'GitHub',
+                              value: 'github.com/Wanzzz88',
+                            ),
+                          ],
+                        ),
+                      ),
+                    ),
+
+                    const SizedBox(height: 20),
+
+                    // KARTU KEAHLIAN DAN HOBI
+                    Card(
+                      child: Padding(
+                        padding: const EdgeInsets.symmetric(
+                          vertical: 12,
+                          horizontal: 8,
+                        ),
+                        child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            Padding(
+                              padding: const EdgeInsets.all(12),
+                              child: Text(
+                                'Keahlian dan Hobi',
+                                style: Theme.of(context)
+                                    .textTheme
+                                    .titleLarge,
+                              ),
+                            ),
+                            const InfoTile(
+                              icon: Icons.computer,
+                              label: 'Keahlian',
+                              value: 'Pemrograman Flutter dan Dart',
+                            ),
+                            const InfoTile(
+                              icon: Icons.web,
+                              label: 'Keahlian',
+                              value: 'HTML, CSS, dan JavaScript',
+                            ),
+                            const InfoTile(
+                              icon: Icons.music_note,
+                              label: 'Hobi',
+                              value: 'Mendengarkan musik',
+                            ),
+                          ],
+                        ),
+                      ),
+                    ),
+
+                    const SizedBox(height: 20),
+                  ],
                 ),
               ),
-            );
-          },
+            ),
+          ),
         ),
       ),
+
+      // FLOATING ACTION BUTTON
+      floatingActionButton: FloatingActionButton(
+        onPressed: () {
+          ScaffoldMessenger.of(context).showSnackBar(
+            const SnackBar(
+              content: Text(
+                'Terima kasih telah melihat profil saya',
+              ),
+            ),
+          );
+        },
+        child: const Icon(Icons.favorite),
+      ),
+    );
+  }
+}
+
+// WIDGET REUSABLE INFOTILE
+class InfoTile extends StatelessWidget {
+  final IconData icon;
+  final String label;
+  final String value;
+
+  const InfoTile({
+    super.key,
+    required this.icon,
+    required this.label,
+    required this.value,
+  });
+
+  @override
+  Widget build(BuildContext context) {
+    return ListTile(
+      leading: Icon(icon),
+      title: Text(label),
+      subtitle: Text(value),
     );
   }
 }
