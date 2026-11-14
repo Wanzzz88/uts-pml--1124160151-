@@ -18,8 +18,8 @@ class _ProfilePageState extends State<ProfilePage> {
     prodi: 'Software Engineering',
     kelas: 'TI 24 SE1',
     bio: 'Mahasiswa yang tertarik dengan pemrograman dan teknologi.',
-    email: 'emailkamu@example.com',
-    hp: '08xxxxxxxxxx',
+    email: 'ridwan@gmail.com',
+    hp: '088291392183',
     github: 'Wanzzz88',
   );
 
